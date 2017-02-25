@@ -10,13 +10,18 @@
 // of the controls from the user interface.
 enum SampleModelControls
 { 
-	XPOS, YPOS, ZPOS, HEIGHT, ROTATE, NUMCONTROLS
+	XPOS, YPOS, ZPOS, HEIGHT, ROTATE, ROTATE_HEAD_X, ROTATE_HEAD_Y, ROTATE_HEAD_Z, NUMCONTROLS
 };
 
 // Colors
 #define COLOR_RED		1.0f, 0.0f, 0.0f
 #define COLOR_GREEN		0.0f, 1.0f, 0.0f
 #define COLOR_BLUE		0.0f, 0.0f, 1.0f
+#define COLOR_WHITE		1.0f, 1.0f, 1.0f
+#define COLOR_YELLOW	1.0f, 1.0f, 0.0f
+#define COLOR_PURPLE	1.0f, 0.0f, 1.0f
+#define COLOR_CYAN		0.0f, 1.0f, 1.0f
+#define COLOR_GRAY		0.5f, 0.5f, 0.5f
 
 // We'll be getting the instance of the application a lot; 
 // might as well have it as a macro.

@@ -201,7 +201,7 @@ void Camera::lookAt(Vec3f eye, Vec3f at, Vec3f up)
 	u[1] = - ( s_nor[0] * F[2] - s_nor[2] * F[0]);
 	u[2] = s_nor[0] * F[1] - s_nor[1] * F[0];
 	Mat4f M(s[0], s[1], s[2], 0, u[0], u[1], u[2], 0, -F[0], -F[1], -F[2], 0, 0, 0, 0, 1);
-	float* glM = new float[16];
+	float glM[16];
 	M.getGLMatrix(glM);
 	glMultMatrixf(glM);
 	glTranslated(-eye[0], -eye[1], -eye[2]);

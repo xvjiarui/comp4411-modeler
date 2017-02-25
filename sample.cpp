@@ -43,29 +43,59 @@ void SampleModel::draw()
 
 	// draw the sample model
 	setAmbientColor(.1f,.1f,.1f);
-	setDiffuseColor(COLOR_GREEN);
+	setDiffuseColor(COLOR_GRAY);
 	glPushMatrix();
 	glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 
+		// draw head
 		glPushMatrix();
-		glTranslated(-1.5, 0, -2);
-		glScaled(3, 1, 4);
+		// glTranslated(0, 4, 0);
+		glTranslated(-1, 4, -1);
+		glTranslated(1, 1, 1);
+		glRotated(VAL(ROTATE_HEAD_X), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_HEAD_Y), 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_HEAD_Z), 0.0, 0.0, 1.0);
+		glTranslated(-1, -1, -1);
+		// glTranslated(0, -4, 0);
+		// glTranslated(-1, 4, -1);
+		glScaled(2, 2, 2);
 		drawBox(1,1,1);
+
+			setAmbientColor(.1f,.1f,.1f);
+			setDiffuseColor(COLOR_YELLOW);
+			// draw head right dec
+			glPushMatrix();
+			glTranslated(0.5,1,1);
+			glRotated(20, 0.0, 0.0, 1.0);
+			glScaled(3, 1, 1);
+			glRotated(90, 1.0 ,0.0, 0.0);
+			drawTriangularPyramid(0.5);
+			glPopMatrix();
+			// draw head left dec
+			glPushMatrix();
+			glTranslated(0.5,1,1);
+			glRotated(-20, 0.0, 0.0, 1.0);
+			glScaled(3, 1, 1);
+			glRotated(-120, 0.0, 0.0, 1.0);
+			glRotated(90, 1.0 ,0.0, 0.0);
+			drawTriangularPyramid(0.5);
+			glPopMatrix();
+
 		glPopMatrix();
 
-		// draw cannon
-		glPushMatrix();
-		glRotated(VAL(ROTATE), 0.0, 1.0, 0.0);
-		glRotated(-90, 1.0, 0.0, 0.0);
-		drawCylinder(VAL(HEIGHT), 0.1, 0.1);
+		// // draw cannon
+		// glPushMatrix();
+		// glRotated(VAL(ROTATE), 0.0, 1.0, 0.0);
+		// glRotated(-90, 1.0, 0.0, 0.0);
+		// drawCylinder(VAL(HEIGHT), 0.1, 0.1);
 
-		glTranslated(0.0, 0.0, VAL(HEIGHT));
-		drawCylinder(1, 1.0, 0.9);
+		// glTranslated(0.0, 0.0, VAL(HEIGHT));
+		// drawCylinder(1, 1.0, 0.9);
 
-		glTranslated(0.0, 0.0, 0.5);
-		glRotated(90, 1.0, 0.0, 0.0);
-		drawCylinder(4, 0.1, 0.2);
-		glPopMatrix();
+		// glTranslated(0.0, 0.0, 0.5);
+		// glRotated(90, 1.0, 0.0, 0.0);
+		// drawCylinder(4, 0.1, 0.2);
+		// glPopMatrix();
 
 	glPopMatrix();
 }
@@ -81,7 +111,9 @@ int main()
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
     controls[HEIGHT] = ModelerControl("Height", 1, 2.5, 0.1f, 1);
 	controls[ROTATE] = ModelerControl("Rotate", -135, 135, 1, 0);
-
+	controls[ROTATE_HEAD_X] = ModelerControl("Rotate Head_X", -30, 30, 1, 0);
+	controls[ROTATE_HEAD_Y] = ModelerControl("Rotate Head_Y", -90, 90, 1, 0);
+	controls[ROTATE_HEAD_Z] = ModelerControl("Rotate Head_Z", -30, 30, 1, 0);
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
 }
