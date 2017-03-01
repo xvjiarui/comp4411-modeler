@@ -436,8 +436,98 @@ void drawTriangularPyramid(double r)
     drawTriangle(x2, y2, z2, x3, y3, z3, x4, y4, z4);
 }
 
+void drawRectangularPyramid(double r, double h)
+{
+    drawTriangle(0, 0, 0, 0, 0, r, r, 0, r);
+    drawTriangle(0, 0, 0, r, 0, r, r, 0, 0);
+    drawTriangle(r / 2, h, r / 2, 0, 0, 0, 0, 0, r);
+    drawTriangle(r / 2, h, r / 2, 0, 0, r, r, 0, r);
+    drawTriangle(r / 2, h, r / 2, r, 0, r, r, 0, 0);
+    drawTriangle(r / 2, h, r / 2, r, 0, 0, 0, 0, 0);
+}
 
+void drawTriangularPrism(double a, double b, double h, double theta)
+{
+    double sinT = sin(theta * M_PI / 180);
+    double cosT = cos(theta * M_PI / 180);
+    drawTriangle(0, 0, 0, a, 0, 0, b * cosT, 0, b * sinT);
 
+    drawTriangle(0, 0, 0, b * cosT, 0, b * sinT, 0, h, 0);
+    drawTriangle(b * cosT, 0, b * sinT, b * cosT, h, b * sinT, 0, h, 0);
+
+    drawTriangle(b * cosT, 0, b * sinT, a, 0, 0, b * cosT, h, b * sinT);
+    drawTriangle(a, 0, 0, a, h, 0, b * cosT, h, b * sinT);
+
+    drawTriangle(0, 0, 0, 0, h, 0, a, 0, 0);
+    drawTriangle(a, 0, 0, 0, h, 0, a, h, 0);
+
+    drawTriangle(0, h, 0, b * cosT, h, b * sinT, a, h, 0);
+}
+
+// draw
+
+void drawHead(double angle)
+{
+    // draw head
+    setAmbientColor(.1f,.1f,.1f);
+    setDiffuseColor(COLOR_GRAY);
+    glPushMatrix();
+    glScaled(2, 2, 2);
+    drawBox(1,1,1);
+
+        setAmbientColor(.1f,.1f,.1f);
+        setDiffuseColor(COLOR_YELLOW);
+        // draw head right dec
+        glPushMatrix();
+        glTranslated(0.5,1,1);
+        glRotated(20 + angle, 0.0, 0.0, 1.0);
+        glScaled(3, 1, 1);
+        glRotated(90, 1.0 ,0.0, 0.0);
+        drawTriangularPyramid(0.5);
+        glPopMatrix();
+        // draw head left dec
+        glPushMatrix();
+        glTranslated(0.5,1,1);
+        glRotated(-20 - angle, 0.0, 0.0, 1.0);
+        glScaled(3, 1, 1);
+        glRotated(-120, 0.0, 0.0, 1.0);
+        glRotated(90, 1.0 ,0.0, 0.0);
+        drawTriangularPyramid(0.5);
+        glPopMatrix();
+
+        setAmbientColor(.1f,.1f,.1f);
+        setDiffuseColor(COLOR_GRAY);
+        // draw neck
+        glPushMatrix();
+        glTranslated(0.5, 0, 0.5);
+        glTranslated(-0.2, -0.3, -0.2);
+        drawBox(0.4, 0.4, 0.4);
+        glPopMatrix();
+
+    glPopMatrix();
+}
+
+void drawShoulder(double r, double h)
+{
+    glPushMatrix();
+
+    drawBox(r, r, r);
+    glRotated(-90, 1.0, 0.0, 0.0);
+    drawRectangularPyramid(r, h);
+    glRotated(90, 1.0, 0.0, 0.0);
+    glTranslated(0, r, 0);
+    drawRectangularPyramid(r, h);
+    glTranslated(0, 0, r);
+    glRotated(90, 1.0, 0.0, 0.0);
+    drawRectangularPyramid(r, h);
+    glRotated(-90, 1.0, 0.0, 0.0);
+    glTranslated(r, 0, 0);
+    glRotated(90, 0, 1, 0);
+    glRotated(90, 1, 0, 0);
+    drawRectangularPyramid(r, h);
+
+    glPopMatrix();
+}
 
 
 

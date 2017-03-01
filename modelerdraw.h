@@ -96,4 +96,14 @@ void drawTriangle( double x1, double y1, double z1,
 
 void drawTriangularPyramid(double r);
 
+void drawRectangularPyramid(double r, double h);
+
+void drawTriangularPrism(double a, double b, double h, double theta);
+
+// draw
+
+void drawHead(double angle);
+
+void drawShoulder(double r, double h);
+
 #endif

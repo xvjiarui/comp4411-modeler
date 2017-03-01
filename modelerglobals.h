@@ -10,7 +10,14 @@
 // of the controls from the user interface.
 enum SampleModelControls
 { 
-	XPOS, YPOS, ZPOS, HEIGHT, ROTATE, LIGHT_POS_X, LIGHT_POS_Y, LIGHT_POS_Z, LIGHT_INTENSITY, ROTATE_HEAD_X, ROTATE_HEAD_Y, ROTATE_HEAD_Z, ROTATE_HEAD_DEC, NUMCONTROLS
+	XPOS, YPOS, ZPOS, HEIGHT, ROTATE, 
+	LIGHT0_POS_X, LIGHT0_POS_Y, LIGHT0_POS_Z, LIGHT0_INTENSITY, 
+	LIGHT1_POS_X, LIGHT1_POS_Y, LIGHT1_POS_Z, LIGHT1_INTENSITY, 
+	ROTATE_HEAD_X, ROTATE_HEAD_Y, ROTATE_HEAD_Z, 
+	ROTATE_HEAD_DEC, 
+	ROTATE_RIGHT_ARM_X, ROTATE_RIGHT_ARM_Y, ROTATE_RIGHT_ARM_Z, 
+	ROTATE_LEFT_ARM_X, ROTATE_LEFT_ARM_Y, ROTATE_LEFT_ARM_Z, 
+	NUMCONTROLS
 };
 
 // Colors
@@ -22,6 +29,7 @@ enum SampleModelControls
 #define COLOR_PURPLE	1.0f, 0.0f, 1.0f
 #define COLOR_CYAN		0.0f, 1.0f, 1.0f
 #define COLOR_GRAY		0.5f, 0.5f, 0.5f
+#define COLOR_GREY		0.7f, 0.7f, 0.7f
 
 // We'll be getting the instance of the application a lot; 
 // might as well have it as a macro.

@@ -33,10 +33,10 @@ void SampleModel::draw()
 	// projection matrix, don't bother with this ...
 	
     ModelerView::draw();
-	GLfloat lightPosition0[] = { VAL(LIGHT_POS_X), VAL(LIGHT_POS_Y), VAL(LIGHT_POS_Z), 0 };
-	GLfloat lightDiffuse0[]  = { VAL(LIGHT_INTENSITY), VAL(LIGHT_INTENSITY), VAL(LIGHT_INTENSITY), VAL(LIGHT_INTENSITY) };
-	GLfloat lightPosition1[] = { VAL(LIGHT_POS_X), VAL(LIGHT_POS_Y), VAL(LIGHT_POS_Z), 0  };
-	GLfloat lightDiffuse1[]  = { VAL(LIGHT_INTENSITY), VAL(LIGHT_INTENSITY), VAL(LIGHT_INTENSITY), VAL(LIGHT_INTENSITY) };
+	GLfloat lightPosition0[] = { VAL(LIGHT0_POS_X), VAL(LIGHT0_POS_Y), VAL(LIGHT0_POS_Z), 0 };
+	GLfloat lightDiffuse0[]  = { VAL(LIGHT0_INTENSITY), VAL(LIGHT0_INTENSITY), VAL(LIGHT0_INTENSITY), VAL(LIGHT0_INTENSITY) };
+	GLfloat lightPosition1[] = { VAL(LIGHT1_POS_X), VAL(LIGHT1_POS_Y), VAL(LIGHT1_POS_Z), 0  };
+	GLfloat lightDiffuse1[]  = { VAL(LIGHT1_INTENSITY), VAL(LIGHT1_INTENSITY), VAL(LIGHT1_INTENSITY), VAL(LIGHT1_INTENSITY) };
 	glLightfv( GL_LIGHT0, GL_POSITION, lightPosition0 );
     glLightfv( GL_LIGHT0, GL_DIFFUSE, lightDiffuse0 );
     glLightfv( GL_LIGHT1, GL_POSITION, lightPosition1 );
@@ -57,49 +57,41 @@ void SampleModel::draw()
 	glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 
 		// draw head
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_GREY);
 		glPushMatrix();
-		// glTranslated(0, 4, 0);
-		glTranslated(-1, 4, -1);
+		glTranslated(-1, 15, -1);
 		glTranslated(1, -0.6, 1);
 		glRotated(VAL(ROTATE_HEAD_X), 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_HEAD_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_HEAD_Z), 0.0, 0.0, 1.0);
-
-
 		glTranslated(-1, 0.6, -1);
-		// glTranslated(0, -4, 0);
-		// glTranslated(-1, 4, -1);
-		glScaled(2, 2, 2);
-		drawBox(1,1,1);
 
-			setAmbientColor(.1f,.1f,.1f);
-			setDiffuseColor(COLOR_YELLOW);
-			// draw head right dec
-			glPushMatrix();
-			glTranslated(0.5,1,1);
-			glRotated(20 + VAL(ROTATE_HEAD_DEC), 0.0, 0.0, 1.0);
-			glScaled(3, 1, 1);
-			glRotated(90, 1.0 ,0.0, 0.0);
-			drawTriangularPyramid(0.5);
-			glPopMatrix();
-			// draw head left dec
-			glPushMatrix();
-			glTranslated(0.5,1,1);
-			glRotated(-20 - VAL(ROTATE_HEAD_DEC), 0.0, 0.0, 1.0);
-			glScaled(3, 1, 1);
-			glRotated(-120, 0.0, 0.0, 1.0);
-			glRotated(90, 1.0 ,0.0, 0.0);
-			drawTriangularPyramid(0.5);
-			glPopMatrix();
+		drawHead(VAL(ROTATE_HEAD_DEC));
 
-			setAmbientColor(.1f,.1f,.1f);
-			setDiffuseColor(COLOR_GRAY);
-			// draw neck
-			glPushMatrix();
-			glTranslated(0.5, 0, 0.5);
-			glTranslated(-0.2, -0.3, -0.2);
-			drawBox(0.4, 0.4, 0.4);
+		glPopMatrix();
 
+		// draw Torso
+		glPushMatrix();
+		setDiffuseColor(COLOR_GRAY);
+		glTranslated(-2, 6.4, -1);
+		drawBox(4, 8, 2);
+		glPopMatrix();
+
+
+		// draw right arm
+		glPushMatrix();
+		glTranslated(2.5, 12.5, -1);
+
+		glRotated(VAL(ROTATE_RIGHT_ARM_X), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_ARM_Y), 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_ARM_Z), 0.0, 0.0, 1.0);
+		// draw right shoulder
+		
+		setDiffuseColor(COLOR_BLUE);
+		drawShoulder(2, 0.5);
+		glTranslated(0, -3, 0);
+		drawBox(1.5, 3, 1.5);
 		glPopMatrix();
 
 		// // draw cannon
@@ -130,14 +122,24 @@ int main()
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
     controls[HEIGHT] = ModelerControl("Height", 1, 2.5, 0.1f, 1);
 	controls[ROTATE] = ModelerControl("Rotate", -135, 135, 1, 0);
-	controls[LIGHT_POS_X] = ModelerControl("Light pos X", -30, 30, 1, 8);
-	controls[LIGHT_POS_Y] = ModelerControl("Light pos Y", -30, 30, 1, 12);
-	controls[LIGHT_POS_Z] = ModelerControl("Light pos Z", -30, 30, 1, 9);
-	controls[LIGHT_INTENSITY] = ModelerControl("Light intensity", 0, 5, 0.01, 1.3);
+	controls[LIGHT0_POS_X] = ModelerControl("Light0 pos X", -30, 30, 1, 4);
+	controls[LIGHT0_POS_Y] = ModelerControl("Light0 pos Y", -30, 30, 1, 2);
+	controls[LIGHT0_POS_Z] = ModelerControl("Light0 pos Z", -30, 30, 1, -4);
+	controls[LIGHT0_INTENSITY] = ModelerControl("Light0 intensity", 0, 5, 0.01, 1.3);
+	controls[LIGHT1_POS_X] = ModelerControl("Light1 pos X", -30, 30, 1, -2);
+	controls[LIGHT1_POS_Y] = ModelerControl("Light1 pos Y", -30, 30, 1, 1);
+	controls[LIGHT1_POS_Z] = ModelerControl("Light1 pos Z", -30, 30, 1, 5);
+	controls[LIGHT1_INTENSITY] = ModelerControl("Light1 intensity", 0, 5, 0.01, 1.3);
 	controls[ROTATE_HEAD_X] = ModelerControl("Rotate Head_X", -30, 30, 1, 0);
 	controls[ROTATE_HEAD_Y] = ModelerControl("Rotate Head_Y", -90, 90, 1, 0);
 	controls[ROTATE_HEAD_Z] = ModelerControl("Rotate Head_Z", -30, 30, 1, 0);
 	controls[ROTATE_HEAD_DEC] = ModelerControl("Rotate Haed_Dec", -20, 20, 1, 0);
+	controls[ROTATE_RIGHT_ARM_X] = ModelerControl("Rotate right arm X", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_ARM_Y] = ModelerControl("Rotate right arm Y", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_ARM_Z] = ModelerControl("Rotate right arm Z", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_ARM_X] = ModelerControl("Rotate left arm X", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_ARM_Y] = ModelerControl("Rotate left arm Y", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_ARM_Z] = ModelerControl("Rotate left arm Z", -45, 45, 1, 0);
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
 }
