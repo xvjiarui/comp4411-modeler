@@ -100,6 +100,7 @@ void drawRectangularPyramid(double r, double h);
 
 void drawTriangularPrism(double a, double b, double h, double theta);
 
+void drawRectangularPrism(double r1, double r2, double h);
 // draw
 
 void drawHead(double angle);

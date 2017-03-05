@@ -46,7 +46,7 @@ void SampleModel::draw()
 	setAmbientColor(.1f,.1f,.1f);
 	setDiffuseColor(COLOR_RED);
 	glPushMatrix();
-	glTranslated(-5,0,-5);
+	glTranslated(-5,-5,-5);
 	drawBox(10,0.01f,10);
 	glPopMatrix();
 
@@ -76,6 +76,21 @@ void SampleModel::draw()
 		setDiffuseColor(COLOR_GRAY);
 		glTranslated(-2, 6.4, -1);
 		drawBox(4, 8, 2);
+
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_WHITE);
+		glPushMatrix();
+		glTranslated(1, -1, 0.5);
+		glScaled(2, 1, 1);
+		drawRectangularPrism(2, 1, 1);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslated(1, -1, 1);
+		glRotated(90, 0.0, 1.0, 0.0);
+		drawCylinder(2, 0.5, 0.5);
+		glPopMatrix();
+
 		glPopMatrix();
 
 
@@ -83,7 +98,7 @@ void SampleModel::draw()
 		glPushMatrix();
 		glTranslated(2.5, 12.5, -1);
 
-		glRotated(VAL(ROTATE_RIGHT_ARM_X), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_ARM_X), 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_Z), 0.0, 0.0, 1.0);
 		// draw right shoulder
@@ -92,7 +107,143 @@ void SampleModel::draw()
 		drawShoulder(2, 0.5);
 		glTranslated(0, -3, 0);
 		drawBox(1.5, 3, 1.5);
+		glTranslated(0, -0.5, 0.5);
+		glRotated(90, 0.0, 1.0, 0.0);
+		drawCylinder(1.5, 0.5, 0.5);
+		glRotated(-90, 0.0, 1.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_ARM_L_X), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_ARM_L_Y), 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_ARM_L_Z), 0.0, 0.0, 1.0);
+		glTranslated(0, -3.5, -0.5);
+		drawBox(1.5, 3, 1.5);
 		glPopMatrix();
+
+		// draw left arm
+		glPushMatrix();
+		glRotated(180, 0.0, 1.0, 0.0);
+		glTranslated(2.5, 12.5, -1);
+
+		glRotated(VAL(ROTATE_LEFT_ARM_X), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_ARM_Y), 0.0, 1.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_ARM_Z), 0.0, 0.0, 1.0);
+		// draw left shoulder
+		
+		setDiffuseColor(COLOR_BLUE);
+		drawShoulder(2, 0.5);
+		glTranslated(0, -3, 0);
+		drawBox(1.5, 3, 1.5);
+		glTranslated(0, -0.5, 0.5);
+		glRotated(90, 0.0, 1.0, 0.0);
+		drawCylinder(1.5, 0.5, 0.5);
+		glRotated(-90, 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_LEFT_ARM_L_X), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_ARM_L_Y), 0.0, 1.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_ARM_L_Z), 0.0, 0.0, 1.0);
+		glTranslated(0, -3.5, -0.5);
+		drawBox(1.5, 3, 1.5);
+		glPopMatrix();
+
+		// draw right leg 
+		glPushMatrix();
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_GREEN);
+
+		glTranslated(0, 5, 0);
+		glRotated(-VAL(ROTATE_RIGHT_LEG_X), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_LEG_Y), 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_LEG_Z), 0.0, 0.0, 1.0);
+		glTranslated(0, -5, 0);
+
+		glTranslated(0.5, 1.5, -1);
+		glScaled(0.75, 1, 1);
+		drawBox(2, 4.5, 2);
+		// draw lower leg
+		glTranslated(0, -0.5, 1);
+		glRotated(90, 0.0, 1.0, 0.0);
+		drawCylinder(2, 0.5, 0.5);
+		glRotated(-90, 0.0, 1.0, 0.0);
+
+		glTranslated(1, 0, 0);
+		glRotated(-VAL(ROTATE_RIGHT_LEG_L_X), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_LEG_L_Y), 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_LEG_L_Z), 0.0, 0.0, 1.0);
+		glTranslated(-1, 0, 0);
+
+		glTranslated(0, -4, -1);
+		glTranslated(0.25, 0, 0.25);
+		drawRectangularPrism(2, 1.5, 3.5);
+
+		// draw foot
+		glTranslated(0.5, -1, 1);
+		glRotated(-VAL(ROTATE_RIGHT_FOOT_X), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_FOOT_Y), 0.0, 1.0, 0.0);
+		glRotated(VAL(ROTATE_RIGHT_FOOT_Z), 0.0, 0.0, 1.0);
+		glTranslated(-0.5, 1, -1);
+
+		glTranslated(-0.25, 0, -0.25);
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_RED);
+		glTranslated(0, -2, 0);
+		drawRectangularPrism(1.5, 2, 1.5);
+		glTranslated(1.75, 0, 1.5);
+		glRotated(90, 0.0, 0.0, 1.0);
+		drawTriangularPrism(1.5, 1.5, 1.5, 90);
+		glRotated(-90, 0.0, 0.0, 1.0);
+		glPopMatrix();
+
+		// draw left leg 
+		glPushMatrix();
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_GREEN);
+		glRotated(180, 0.0, 1.0, 0.0);
+
+		glTranslated(0, 5, 0);
+		glRotated(VAL(ROTATE_LEFT_LEG_X), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_LEG_Y), 0.0, 1.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_LEG_Z), 0.0, 0.0, 1.0);
+		glTranslated(0, -5, 0);
+
+		glTranslated(0.5, 1.5, -1);
+		glScaled(0.75, 1, 1);
+		drawBox(2, 4.5, 2);
+		// draw lower leg
+		glTranslated(0, -0.5, 1);
+		glRotated(90, 0.0, 1.0, 0.0);
+		drawCylinder(2, 0.5, 0.5);
+		glRotated(-90, 0.0, 1.0, 0.0);
+
+		glTranslated(1, 0, 0);
+		glRotated(VAL(ROTATE_LEFT_LEG_L_X), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_LEG_L_Y), 0.0, 1.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_LEG_L_Z), 0.0, 0.0, 1.0);
+		glTranslated(-1, 0, 0);
+
+		glTranslated(0, -4, -1);
+		glTranslated(0.25, 0, 0.25);
+		drawRectangularPrism(2, 1.5, 3.5);
+
+		// draw foot
+		glTranslated(0.5, -1, 1);
+		glRotated(VAL(ROTATE_LEFT_FOOT_X), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_FOOT_Y), 0.0, 1.0, 0.0);
+		glRotated(-VAL(ROTATE_LEFT_FOOT_Z), 0.0, 0.0, 1.0);
+		glTranslated(-0.5, 1, -1);
+
+		glTranslated(-0.25, 0, -0.25);
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_RED);
+		glTranslated(0, -2, 0);
+		drawRectangularPrism(1.5, 2, 1.5);
+		glTranslated(1.75, 0, 0.5);
+		glRotated(-90, 1.0, 0.0, 0.0);
+		glRotated(90, 0.0, 0.0, 1.0);
+		drawTriangularPrism(1.5, 1.5, 1.5, 90);
+		glRotated(-90, 0.0, 0.0, 1.0);
+		glRotated(90, 1.0, 0.0, 0.0);
+		glPopMatrix();
+
+
+
 
 		// // draw cannon
 		// glPushMatrix();
@@ -137,9 +288,33 @@ int main()
 	controls[ROTATE_RIGHT_ARM_X] = ModelerControl("Rotate right arm X", -45, 45, 1, 0);
 	controls[ROTATE_RIGHT_ARM_Y] = ModelerControl("Rotate right arm Y", -45, 45, 1, 0);
 	controls[ROTATE_RIGHT_ARM_Z] = ModelerControl("Rotate right arm Z", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_ARM_L_X] = ModelerControl("Rotate right arm lower X", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_ARM_L_Y] = ModelerControl("Rotate right arm lower Y", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_ARM_L_Z] = ModelerControl("Rotate right arm lower Z", -45, 45, 1, 0);
 	controls[ROTATE_LEFT_ARM_X] = ModelerControl("Rotate left arm X", -45, 45, 1, 0);
 	controls[ROTATE_LEFT_ARM_Y] = ModelerControl("Rotate left arm Y", -45, 45, 1, 0);
 	controls[ROTATE_LEFT_ARM_Z] = ModelerControl("Rotate left arm Z", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_ARM_L_X] = ModelerControl("Rotate left arm lower X", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_ARM_L_Y] = ModelerControl("Rotate left arm lower Y", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_ARM_L_Z] = ModelerControl("Rotate left arm lower Z", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_LEG_X] = ModelerControl("Rotate rihgt leg X", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_LEG_Y] = ModelerControl("Rotate rihgt leg Y", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_LEG_Z] = ModelerControl("Rotate rihgt leg Z", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_LEG_L_X] = ModelerControl("Rotate rihgt leg lower X", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_LEG_L_Y] = ModelerControl("Rotate rihgt leg lower Y", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_LEG_L_Z] = ModelerControl("Rotate rihgt leg lower Z", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_FOOT_X] = ModelerControl("Rotate rihgt foot X", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_FOOT_Y] = ModelerControl("Rotate rihgt foot Y", -45, 45, 1, 0);
+	controls[ROTATE_RIGHT_FOOT_Z] = ModelerControl("Rotate rihgt foot Z", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_LEG_X] = ModelerControl("Rotate left leg X", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_LEG_Y] = ModelerControl("Rotate left leg Y", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_LEG_Z] = ModelerControl("Rotate left leg Z", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_LEG_L_X] = ModelerControl("Rotate left leg lower X", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_LEG_L_Y] = ModelerControl("Rotate left leg lower Y", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_LEG_L_Z] = ModelerControl("Rotate left leg lower Z", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_FOOT_X] = ModelerControl("Rotate left foot X", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_FOOT_Y] = ModelerControl("Rotate left foot Y", -45, 45, 1, 0);
+	controls[ROTATE_LEFT_FOOT_Z] = ModelerControl("Rotate left foot Z", -45, 45, 1, 0);
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
 }

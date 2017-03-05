@@ -464,6 +464,29 @@ void drawTriangularPrism(double a, double b, double h, double theta)
     drawTriangle(0, h, 0, b * cosT, h, b * sinT, a, h, 0);
 }
 
+void drawRectangularPrism(double r1, double r2, double h)
+{
+    double a = (r2 - r1)/2;
+    double b = (r2 + r1)/2;
+    drawTriangle(0, 0, 0, r2, 0, r2, 0, 0, r2);
+    drawTriangle(0, 0, 0, r2, 0, 0, r2, 0, r2);
+
+    drawTriangle(0, 0, 0, a, h, b, a, h, a);
+    drawTriangle(0, 0, 0, 0, 0, r2, a, h, b);
+
+    drawTriangle(0, 0, 0, a, h, a, b, h, a);
+    drawTriangle(0, 0, 0, b, h, a, r2, 0, 0);
+
+    drawTriangle(r2, 0, 0, b, h, a, b, h, b);
+    drawTriangle(r2, 0, 0, b, h, b, r2, 0, r2);
+
+    drawTriangle(0, 0, r2, b, h, b, a, h, b);
+    drawTriangle(0, 0, r2, r2, 0, r2, b, h, b);
+
+    drawTriangle(a, h, a, a, h, b, b, h, b);
+    drawTriangle(a, h, a, b, h, b, b, h, a);
+}
+
 // draw
 
 void drawHead(double angle)
