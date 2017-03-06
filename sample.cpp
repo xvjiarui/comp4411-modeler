@@ -98,22 +98,29 @@ void SampleModel::draw()
 		glPushMatrix();
 		glTranslated(2.5, 12.5, -1);
 
+		glTranslated(0, 1, 1);
 		glRotated(-VAL(ROTATE_RIGHT_ARM_X), 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_Z), 0.0, 0.0, 1.0);
+		glTranslated(0, -1, -1);
 		// draw right shoulder
 		
 		setDiffuseColor(COLOR_BLUE);
 		drawShoulder(2, 0.5);
+		glTranslated(0, 0, 0.25);
 		glTranslated(0, -3, 0);
 		drawBox(1.5, 3, 1.5);
 		glTranslated(0, -0.5, 0.5);
+		glTranslated(0, 0, 0.25);
 		glRotated(90, 0.0, 1.0, 0.0);
 		drawCylinder(1.5, 0.5, 0.5);
 		glRotated(-90, 0.0, 1.0, 0.0);
+		glTranslated(0, 0, -0.25);
+		glTranslated(0.5, 0, 0.25);
 		glRotated(-VAL(ROTATE_RIGHT_ARM_L_X), 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_L_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_L_Z), 0.0, 0.0, 1.0);
+		glTranslated(-0.5, 0, -0.25);
 		glTranslated(0, -3.5, -0.5);
 		drawBox(1.5, 3, 1.5);
 		glPopMatrix();
@@ -123,22 +130,29 @@ void SampleModel::draw()
 		glRotated(180, 0.0, 1.0, 0.0);
 		glTranslated(2.5, 12.5, -1);
 
+		glTranslated(0, 1, 1);
 		glRotated(VAL(ROTATE_LEFT_ARM_X), 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_Z), 0.0, 0.0, 1.0);
+		glTranslated(0, -1, -1);
 		// draw left shoulder
 		
 		setDiffuseColor(COLOR_BLUE);
 		drawShoulder(2, 0.5);
+		glTranslated(0, 0, 0.25);
 		glTranslated(0, -3, 0);
 		drawBox(1.5, 3, 1.5);
 		glTranslated(0, -0.5, 0.5);
+		glTranslated(0, 0, 0.25);
 		glRotated(90, 0.0, 1.0, 0.0);
 		drawCylinder(1.5, 0.5, 0.5);
 		glRotated(-90, 0.0, 1.0, 0.0);
+		glTranslated(0, 0, -0.25);
+		glTranslated(0.5, 0, 0.25);
 		glRotated(VAL(ROTATE_LEFT_ARM_L_X), 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_L_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_L_Z), 0.0, 0.0, 1.0);
+		glTranslated(-0.5, 0, -0.25);
 		glTranslated(0, -3.5, -0.5);
 		drawBox(1.5, 3, 1.5);
 		glPopMatrix();
