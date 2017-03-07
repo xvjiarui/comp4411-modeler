@@ -3,6 +3,7 @@
 #include "modelerview.h"
 #include "modelerapp.h"
 #include "modelerdraw.h"
+#include "MetaBall.h"
 #include <FL/gl.h>
 #include <FL/glut.h>
 #include <string>
@@ -84,6 +85,9 @@ void SampleModel::draw()
 	glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 
 		// draw head
+		// MetaBall m_metaBall;
+		// m_metaBall.cal();
+		// m_metaBall.draw(1);
 		setAmbientColor(.1f,.1f,.1f);
 		setDiffuseColor(COLOR_GREY);
 		glPushMatrix();

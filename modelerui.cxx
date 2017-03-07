@@ -278,8 +278,8 @@ Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {"Medium Quality", 0,  (Fl_Callback*)ModelerUserInterface::cb_Medium, 0, 12, 0, 0, 14, 0},
  {"Low Quality", 0,  (Fl_Callback*)ModelerUserInterface::cb_Low, 0, 8, 0, 0, 14, 0},
  {"Poor Quality", 0,  (Fl_Callback*)ModelerUserInterface::cb_Poor, 0, 136, 0, 0, 14, 0},
- {"Frame All", 0, (Fl_Callback*)ModelerUserInterface::cb_FrameAll, 0, 136, 0, 0, 14, 0},
  {"Focus on Origin", 0,  (Fl_Callback*)ModelerUserInterface::cb_Focus, 0, 0, 0, 0, 14, 0},
+ {"Frame All", 0, (Fl_Callback*)ModelerUserInterface::cb_FrameAll, 0, 4, 0, 0, 14, 0},
  {0},
  {"Animate", 0,  0, 0, 64, 0, 0, 14, 0},
  {"Enable", 0,  (Fl_Callback*)ModelerUserInterface::cb_m_controlsAnimOnMenu, 0, 2, 0, 0, 14, 0},
@@ -287,7 +287,7 @@ Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {0}
 };
 // 11-01-2001: fixed bug that caused animation problems
-Fl_Menu_Item* ModelerUserInterface::m_controlsAnimOnMenu = ModelerUserInterface::menu_m_controlsMenuBar + 18;
+Fl_Menu_Item* ModelerUserInterface::m_controlsAnimOnMenu = ModelerUserInterface::menu_m_controlsMenuBar + 19;
 
 inline void ModelerUserInterface::cb_m_controlsBrowser_i(Fl_Browser*, void*) {
   for (int i=0; i<ModelerApplication::Instance()->m_numControls; i++) {
