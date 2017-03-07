@@ -1,8 +1,10 @@
 #include "modelerdraw.h"
 #include <FL/gl.h>
+#include <FL/glut.h>
 #include <GL/glu.h>
 #include <cstdio>
 #include <math.h>
+#include "stb_image.h"
 
 // ********************************************************
 // Support functions from previous version of modeler
@@ -593,6 +595,15 @@ void drawHead(double angle, int level)
         glTranslated(0.5, 1.25, 1);
         glRotated(90, 1.0, 0.0, 0.0);
         drawTorus(0.15, 0.05);
+        glRotated(-90, 1.0, 0.0, 0.0);
+
+        glPushMatrix();
+        setAmbientColor(.1f,.1f,.1f);
+        setDiffuseColor(COLOR_YELLOW);
+        glTranslated(0, -1, 0);
+        glScaled(0.2, 0.2, 0.2);
+        glutSolidDodecahedron();
+        glPopMatrix();
 
         glPopMatrix();
 
@@ -626,6 +637,29 @@ void drawShoulder(double r, double h, int level)
     glPopMatrix();
 }
 
+void drawTexture(std::string& fileName, GLuint& handle)
+{
+    int height, width, numComponent;
+    unsigned char* textureData = stbi_load(fileName.c_str(), &width, &height, &numComponent, 4);
+    if (textureData == NULL)
+    {
+        std::cerr << "loading texture failed" << std::endl;
+    }
+
+    glGenTextures(1, &handle);
+    glBindTexture(GL_TEXTURE_2D, handle);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
+        GL_UNSIGNED_BYTE, textureData);
+    glFlush();
+
+    stbi_image_free(textureData);
+}
 
 
 

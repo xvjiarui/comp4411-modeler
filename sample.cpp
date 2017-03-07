@@ -4,6 +4,8 @@
 #include "modelerapp.h"
 #include "modelerdraw.h"
 #include <FL/gl.h>
+#include <FL/glut.h>
+#include <string>
 
 #include "modelerglobals.h"
 
@@ -19,6 +21,8 @@ public:
 	int arm_angle_step = 1;
 	int leg_angle = 0;
 	int leg_angle_step = 1;
+	std::string m_texturePath = "";
+	GLuint m_texture;
 };
 
 // We need to make a creator function, mostly because of
@@ -32,6 +36,12 @@ ModelerView* createSampleModel(int x, int y, int w, int h, char *label)
 // method of ModelerView to draw out SampleModel
 void SampleModel::draw()
 {
+	// if (m_texturePath != "") {
+		// glEnable(GL_TEXTURE_2D);
+		// glBindTexture(GL_TEXTURE_2D, m_texture);
+		// drawTexture(std::string("Image/RedTexture.jpg"), m_texture);
+	// }
+
     // This call takes care of a lot of the nasty projection 
     // matrix stuff.  Unless you want to fudge directly with the 
 	// projection matrix, don't bother with this ...
@@ -322,6 +332,8 @@ void SampleModel::draw()
 		glPopMatrix();
 
 	glPopMatrix();
+	// if (m_texturePath != "")
+	// 	glDisable(GL_TEXTURE_2D);
 }
 
 int main()

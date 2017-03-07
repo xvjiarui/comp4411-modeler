@@ -25,7 +25,7 @@ protected:
     Vec3f		mUpVector;
     bool		mDirtyTransform;
     
-    void calculateViewingTransformParameters();
+    // void calculateViewingTransformParameters();
     
     Vec3f			mLastMousePosition;
     MouseAction_t	mCurrentMouseAction;
@@ -74,6 +74,7 @@ public:
     // the startX method on a mouse down, updateX on mouse move and finally
     // endX on mouse up.
     //-----------------------------------------------------
+    void calculateViewingTransformParameters();
     void clickMouse( MouseAction_t action, int x, int y );
     void dragMouse( int x, int y );
     void releaseMouse( int x, int y );

@@ -7,6 +7,8 @@
 
 #include <FL/gl.h>
 #include <cstdio>
+#include <string>
+#include <iostream>
 
 #include "modelerglobals.h"
 
@@ -108,5 +110,7 @@ void drawRectangularPrism(double r1, double r2, double h);
 void drawHead(double angle, int level);
 
 void drawShoulder(double r, double h, int level);
+
+void drawTexture(std::string& fileName, GLuint& handle);
 
 #endif
