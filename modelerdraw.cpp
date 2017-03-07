@@ -416,6 +416,53 @@ void drawTriangle( double x1, double y1, double z1,
     }
 }
 
+void drawTorus(GLdouble r1, GLdouble r2)
+{
+    ModelerDrawState *mds = ModelerDrawState::Instance();
+    int divisions;
+
+    _setupOpenGl();
+
+    switch (mds->m_quality)
+    {
+    case HIGH:
+        divisions = 32; break;
+    case MEDIUM:
+        divisions = 20; break;
+    case LOW:
+        divisions = 12; break;
+    case POOR:
+        divisions = 8; break;
+    }
+
+    if (mds->m_rayFile)
+    {
+        _dump_current_modelview();
+        fprintf(mds->m_rayFile,
+            "cone { bottom_radius=%f; top_radius=%f;\n", r1, r2);
+        _dump_current_material();
+        fprintf(mds->m_rayFile, "})\n");
+    }
+    else
+    {
+        divisions *= 6;
+
+        for (int i = 0; i < divisions; i++){
+            GLdouble curAngle = M_PI * 2.0 / divisions * i;
+            GLdouble curOx, curOz;
+            curOx = r1 * cos(curAngle);
+            curOz = r1 * sin(curAngle);
+
+            glPushMatrix();
+            glTranslated(curOx, 0.0, curOz);
+            glRotated(-curAngle / M_PI*180.0, 0.0, 1.0, 0.0);
+            drawCylinder(M_PI * 2.0 / divisions * (r1 + r2)*1.02, r2, r2);
+            glPopMatrix();
+        }
+
+    }
+}
+
 void drawTriangularPyramid(double r)
 {
     double x1 = 0;
@@ -538,6 +585,15 @@ void drawHead(double angle, int level)
         {
             drawBox(0.4, 0.4, 0.4);
         }
+        glPopMatrix();
+
+        glPushMatrix();
+        setAmbientColor(.1f,.1f,.1f);
+        setDiffuseColor(COLOR_RED);
+        glTranslated(0.5, 1.25, 1);
+        glRotated(90, 1.0, 0.0, 0.0);
+        drawTorus(0.15, 0.05);
+
         glPopMatrix();
 
     glPopMatrix();
