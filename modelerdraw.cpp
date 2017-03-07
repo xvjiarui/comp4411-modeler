@@ -489,14 +489,17 @@ void drawRectangularPrism(double r1, double r2, double h)
 
 // draw
 
-void drawHead(double angle)
+void drawHead(double angle, int level)
 {
     // draw head
     setAmbientColor(.1f,.1f,.1f);
     setDiffuseColor(COLOR_GRAY);
     glPushMatrix();
     glScaled(2, 2, 2);
-    drawBox(1,1,1);
+    if(level > 0)
+    {
+        drawBox(1,1,1);
+    }
 
         setAmbientColor(.1f,.1f,.1f);
         setDiffuseColor(COLOR_YELLOW);
@@ -506,7 +509,10 @@ void drawHead(double angle)
         glRotated(20 + angle, 0.0, 0.0, 1.0);
         glScaled(3, 1, 1);
         glRotated(90, 1.0 ,0.0, 0.0);
-        drawTriangularPyramid(0.5);
+        if (level >2)
+        {
+            drawTriangularPyramid(0.5);
+        }
         glPopMatrix();
         // draw head left dec
         glPushMatrix();
@@ -515,7 +521,11 @@ void drawHead(double angle)
         glScaled(3, 1, 1);
         glRotated(-120, 0.0, 0.0, 1.0);
         glRotated(90, 1.0 ,0.0, 0.0);
-        drawTriangularPyramid(0.5);
+        if (level >2)
+        {
+            drawTriangularPyramid(0.5);
+        }
+        
         glPopMatrix();
 
         setAmbientColor(.1f,.1f,.1f);
@@ -524,31 +534,39 @@ void drawHead(double angle)
         glPushMatrix();
         glTranslated(0.5, 0, 0.5);
         glTranslated(-0.2, -0.3, -0.2);
-        drawBox(0.4, 0.4, 0.4);
+        if (level > 1)
+        {
+            drawBox(0.4, 0.4, 0.4);
+        }
         glPopMatrix();
 
     glPopMatrix();
 }
 
-void drawShoulder(double r, double h)
+void drawShoulder(double r, double h, int level)
 {
     glPushMatrix();
 
-    drawBox(r, r, r);
-    glRotated(-90, 1.0, 0.0, 0.0);
-    drawRectangularPyramid(r, h);
-    glRotated(90, 1.0, 0.0, 0.0);
-    glTranslated(0, r, 0);
-    drawRectangularPyramid(r, h);
-    glTranslated(0, 0, r);
-    glRotated(90, 1.0, 0.0, 0.0);
-    drawRectangularPyramid(r, h);
-    glRotated(-90, 1.0, 0.0, 0.0);
-    glTranslated(r, 0, 0);
-    glRotated(90, 0, 1, 0);
-    glRotated(90, 1, 0, 0);
-    drawRectangularPyramid(r, h);
-
+    if (level > 0)
+    {
+        drawBox(r, r, r);
+    }
+    if (level > 1)
+    {
+        glRotated(-90, 1.0, 0.0, 0.0);
+        drawRectangularPyramid(r, h);
+        glRotated(90, 1.0, 0.0, 0.0);
+        glTranslated(0, r, 0);
+        drawRectangularPyramid(r, h);
+        glTranslated(0, 0, r);
+        glRotated(90, 1.0, 0.0, 0.0);
+        drawRectangularPyramid(r, h);
+        glRotated(-90, 1.0, 0.0, 0.0);
+        glTranslated(r, 0, 0);
+        glRotated(90, 0, 1, 0);
+        glRotated(90, 1, 0, 0);
+        drawRectangularPyramid(r, h);
+    }
     glPopMatrix();
 }
 

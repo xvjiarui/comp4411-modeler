@@ -103,8 +103,8 @@ void drawTriangularPrism(double a, double b, double h, double theta);
 void drawRectangularPrism(double r1, double r2, double h);
 // draw
 
-void drawHead(double angle);
+void drawHead(double angle, int level);
 
-void drawShoulder(double r, double h);
+void drawShoulder(double r, double h, int level);
 
 #endif
