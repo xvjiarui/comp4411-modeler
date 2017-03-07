@@ -15,6 +15,10 @@ public:
         : ModelerView(x,y,w,h,label) { }
 
     virtual void draw();
+    int arm_angle = 0;
+	int arm_angle_step = 1;
+	int leg_angle = 0;
+	int leg_angle_step = 1;
 };
 
 // We need to make a creator function, mostly because of
@@ -31,6 +35,19 @@ void SampleModel::draw()
     // This call takes care of a lot of the nasty projection 
     // matrix stuff.  Unless you want to fudge directly with the 
 	// projection matrix, don't bother with this ...
+	if(ModelerApplication::Instance()->m_animating == true)
+	{
+		arm_angle += arm_angle_step;
+		if (arm_angle > 45 || arm_angle < -45)
+		{
+			arm_angle_step = -arm_angle_step;
+		}
+		leg_angle += leg_angle_step;
+		if (leg_angle > 45 || leg_angle < -45)
+		{
+			leg_angle_step = -leg_angle_step;
+		}
+	}
 	
     ModelerView::draw();
 	GLfloat lightPosition0[] = { VAL(LIGHT0_POS_X), VAL(LIGHT0_POS_Y), VAL(LIGHT0_POS_Z), 0 };
@@ -99,7 +116,7 @@ void SampleModel::draw()
 		glTranslated(2.5, 12.5, -1);
 
 		glTranslated(0, 1, 1);
-		glRotated(-VAL(ROTATE_RIGHT_ARM_X) + VAL(LIFT_RIGHT_ARM), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_ARM_X) + VAL(LIFT_RIGHT_ARM) + arm_angle, 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_Z), 0.0, 0.0, 1.0);
 		glTranslated(0, -1, -1);
@@ -123,7 +140,7 @@ void SampleModel::draw()
 		glRotated(-90, 0.0, 1.0, 0.0);
 		glTranslated(0, 0, -0.25);
 		glTranslated(0.5, 0, 0.25);
-		glRotated(-VAL(ROTATE_RIGHT_ARM_L_X) - 3 * VAL(LIFT_RIGHT_ARM), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_ARM_L_X) - 3 * VAL(LIFT_RIGHT_ARM) - 3 * arm_angle, 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_L_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_ARM_L_Z), 0.0, 0.0, 1.0);
 		glTranslated(-0.5, 0, -0.25);
@@ -140,7 +157,7 @@ void SampleModel::draw()
 		glTranslated(2.5, 12.5, -1);
 
 		glTranslated(0, 1, 1);
-		glRotated(VAL(ROTATE_LEFT_ARM_X) - VAL(LIFT_LEFT_ARM), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_LEFT_ARM_X) - VAL(LIFT_LEFT_ARM) + arm_angle, 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_Z), 0.0, 0.0, 1.0);
 		glTranslated(0, -1, -1);
@@ -164,7 +181,7 @@ void SampleModel::draw()
 		glRotated(-90, 0.0, 1.0, 0.0);
 		glTranslated(0, 0, -0.25);
 		glTranslated(0.5, 0, 0.25);
-		glRotated(VAL(ROTATE_LEFT_ARM_L_X) + 3 * VAL(LIFT_LEFT_ARM), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_LEFT_ARM_L_X) + 3 * VAL(LIFT_LEFT_ARM) - 3 * arm_angle, 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_L_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_ARM_L_Z), 0.0, 0.0, 1.0);
 		glTranslated(-0.5, 0, -0.25);
@@ -181,7 +198,7 @@ void SampleModel::draw()
 		setDiffuseColor(COLOR_GREEN);
 
 		glTranslated(0, 5, 0);
-		glRotated(-VAL(ROTATE_RIGHT_LEG_X) - VAL(LIFT_RIGHT_LEG), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_LEG_X) - VAL(LIFT_RIGHT_LEG) + leg_angle, 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_LEG_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_LEG_Z), 0.0, 0.0, 1.0);
 		glTranslated(0, -5, 0);
@@ -202,7 +219,7 @@ void SampleModel::draw()
 		glRotated(-90, 0.0, 1.0, 0.0);
 
 		glTranslated(1, 0, 0);
-		glRotated(-VAL(ROTATE_RIGHT_LEG_L_X) + 2 * VAL(LIFT_RIGHT_LEG), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_LEG_L_X) + 2 * VAL(LIFT_RIGHT_LEG) - 2 * leg_angle, 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_LEG_L_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_LEG_L_Z), 0.0, 0.0, 1.0);
 		glTranslated(-1, 0, 0);
@@ -216,7 +233,7 @@ void SampleModel::draw()
 
 		// draw right foot
 		glTranslated(0.5, -1, 1);
-		glRotated(-VAL(ROTATE_RIGHT_FOOT_X) - VAL(LIFT_RIGHT_LEG), 1.0, 0.0, 0.0);
+		glRotated(-VAL(ROTATE_RIGHT_FOOT_X) - VAL(LIFT_RIGHT_LEG) + leg_angle, 1.0, 0.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_FOOT_Y), 0.0, 1.0, 0.0);
 		glRotated(VAL(ROTATE_RIGHT_FOOT_Z), 0.0, 0.0, 1.0);
 		glTranslated(-0.5, 1, -1);
@@ -245,7 +262,7 @@ void SampleModel::draw()
 		glRotated(180, 0.0, 1.0, 0.0);
 
 		glTranslated(0, 5, 0);
-		glRotated(VAL(ROTATE_LEFT_LEG_X) + VAL(LIFT_LEFT_LEG), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_LEFT_LEG_X) + VAL(LIFT_LEFT_LEG) + leg_angle, 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_LEG_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_LEG_Z), 0.0, 0.0, 1.0);
 		glTranslated(0, -5, 0);
@@ -266,7 +283,7 @@ void SampleModel::draw()
 		glRotated(-90, 0.0, 1.0, 0.0);
 
 		glTranslated(1, 0, 0);
-		glRotated(VAL(ROTATE_LEFT_LEG_L_X) - 2 * VAL(LIFT_LEFT_LEG), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_LEFT_LEG_L_X) - 2 * VAL(LIFT_LEFT_LEG) - 2 * leg_angle, 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_LEG_L_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_LEG_L_Z), 0.0, 0.0, 1.0);
 		glTranslated(-1, 0, 0);
@@ -280,7 +297,7 @@ void SampleModel::draw()
 
 		// draw left foot
 		glTranslated(0.5, -1, 1);
-		glRotated(VAL(ROTATE_LEFT_FOOT_X) + VAL(LIFT_LEFT_LEG), 1.0, 0.0, 0.0);
+		glRotated(VAL(ROTATE_LEFT_FOOT_X) + VAL(LIFT_LEFT_LEG) + leg_angle, 1.0, 0.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_FOOT_Y), 0.0, 1.0, 0.0);
 		glRotated(-VAL(ROTATE_LEFT_FOOT_Z), 0.0, 0.0, 1.0);
 		glTranslated(-0.5, 1, -1);

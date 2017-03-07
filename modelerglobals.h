@@ -29,6 +29,8 @@ enum SampleModelControls
 	LEVEL_OF_DETAILS,
 	NUMCONTROLS
 };
+// Animation
+
 
 // Colors
 #define COLOR_RED		1.0f, 0.0f, 0.0f
