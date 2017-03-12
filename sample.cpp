@@ -22,7 +22,7 @@ public:
 	int arm_angle_step = 1;
 	int leg_angle = 0;
 	int leg_angle_step = 1;
-	std::string m_texturePath = "";
+	std::string m_texturePath = "Image/RedTexture.jpg";
 	GLuint m_texture;
 };
 
@@ -71,6 +71,59 @@ void SampleModel::draw()
     glLightfv( GL_LIGHT1, GL_DIFFUSE, lightDiffuse1 );
 
 	// draw the floor
+	if (VAL(L_SYSTEM))
+	{
+		setAmbientColor(.1f,.1f,.1f);
+		setDiffuseColor(COLOR_YELLOW);
+
+		glBegin(GL_LINES);
+		  glVertex3f(0, 0, 0);
+		  glVertex3f(0, 4, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(0, 1, 0);
+		  glVertex3f(1, 2, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(0, 1, 0);
+		  glVertex3f(-1, 2, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(0.5, 1.5, 0);
+		  glVertex3f(0.5, 2, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(-0.5, 1.5, 0);
+		  glVertex3f(-0.5, 2, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(0, 2, 0);
+		  glVertex3f(2, 4, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(0, 2, 0);
+		  glVertex3f(-2, 4, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(1, 3, 0);
+		  glVertex3f(1, 4, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(-1, 3, 0);
+		  glVertex3f(-1, 4, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(1, 3, 0);
+		  glVertex3f(2, 3, 0);
+		glEnd();
+		glBegin(GL_LINES);
+		  glVertex3f(-1, 3, 0);
+		  glVertex3f(-2, 3, 0);
+		glEnd();
+
+	}
+	else
+	{
 	setAmbientColor(.1f,.1f,.1f);
 	setDiffuseColor(COLOR_RED);
 	glPushMatrix();
@@ -137,12 +190,31 @@ void SampleModel::draw()
 		// draw right shoulder
 		
 		setDiffuseColor(COLOR_BLUE);
-		drawShoulder(2, 0.5, VAL(LEVEL_OF_DETAILS));
+		if (VAL(INDIVIDUAL_LOOK))
+		{	
+			glTranslated(1, 1, 1);
+			glutSolidDodecahedron();
+			glTranslated(-1, -1, -1);
+		}
+		else drawShoulder(2, 0.5, VAL(LEVEL_OF_DETAILS));
 		glTranslated(0, 0, 0.25);
 		glTranslated(0, -3, 0);
 		if (VAL(LEVEL_OF_DETAILS) > 1)
 		{
+			if (m_texturePath != "") 
+			{
+				setDiffuseColor(COLOR_WHITE);
+				setAmbientColor(.1f,.1f,.1f);
+				glEnable(GL_TEXTURE_2D);
+				glBindTexture(GL_TEXTURE_2D, m_texture);
+				drawTexture(m_texturePath, m_texture);
+			}
 			drawBox(1.5, 3, 1.5);
+			if (m_texturePath != "")
+			{
+				glDisable(GL_TEXTURE_2D);
+			}
+			setDiffuseColor(COLOR_BLUE);
 		}
 		glTranslated(0, -0.5, 0.5);
 		glTranslated(0, 0, 0.25);
@@ -178,7 +250,13 @@ void SampleModel::draw()
 		// draw left shoulder
 		
 		setDiffuseColor(COLOR_BLUE);
-		drawShoulder(2, 0.5, VAL(LEVEL_OF_DETAILS));
+		if (VAL(INDIVIDUAL_LOOK))
+		{	
+			glTranslated(1, 1, 1);
+			glutSolidDodecahedron();
+			glTranslated(-1, -1, -1);
+		}
+		else drawShoulder(2, 0.5, VAL(LEVEL_OF_DETAILS));
 		glTranslated(0, 0, 0.25);
 		glTranslated(0, -3, 0);
 		if (VAL(LEVEL_OF_DETAILS) > 1)
@@ -336,6 +414,7 @@ void SampleModel::draw()
 		glPopMatrix();
 
 	glPopMatrix();
+	}
 	// if (m_texturePath != "")
 	// 	glDisable(GL_TEXTURE_2D);
 }
@@ -398,6 +477,8 @@ int main()
 	controls[LIFT_RIGHT_LEG] = ModelerControl("Lift right leg", -45, 45, 1, 0);
 	controls[LIFT_LEFT_LEG] = ModelerControl("Lift left leg", -45, 45, 1, 0);
 	controls[LEVEL_OF_DETAILS] = ModelerControl("Level Of Details", 0, 3, 1, 3);
+	controls[INDIVIDUAL_LOOK] = ModelerControl("Individual look", 0, 1, 1, 0);
+	controls[L_SYSTEM] = ModelerControl("L-system", 0, 1, 1, 0);
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
 }
