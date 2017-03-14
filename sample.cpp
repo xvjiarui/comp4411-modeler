@@ -201,27 +201,30 @@ void SampleModel::draw()
 		glTranslated(0, -3, 0);
 		if (VAL(LEVEL_OF_DETAILS) > 1)
 		{
-			if (m_texturePath != "") 
-			{
-				setDiffuseColor(COLOR_WHITE);
-				setAmbientColor(.1f,.1f,.1f);
-				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D, m_texture);
-				drawTexture(m_texturePath, m_texture);
-			}
+			// if (m_texturePath != "") 
+			// {
+			// 	setDiffuseColor(COLOR_WHITE);
+			// 	setAmbientColor(.1f,.1f,.1f);
+			// 	glEnable(GL_TEXTURE_2D);
+			// 	glBindTexture(GL_TEXTURE_2D, m_texture);
+			// 	drawTexture(m_texturePath, m_texture);
+			// }
 			drawBox(1.5, 3, 1.5);
-			if (m_texturePath != "")
-			{
-				glDisable(GL_TEXTURE_2D);
-			}
-			setDiffuseColor(COLOR_BLUE);
+			// if (m_texturePath != "")
+			// {
+			// 	glDisable(GL_TEXTURE_2D);
+			// }
+			// setDiffuseColor(COLOR_BLUE);
 		}
 		glTranslated(0, -0.5, 0.5);
 		glTranslated(0, 0, 0.25);
 		glRotated(90, 0.0, 1.0, 0.0);
 		if (VAL(LEVEL_OF_DETAILS) > 1)
 		{
-			drawCylinder(1.5, 0.5, 0.5);
+			setDiffuseColor(COLOR_WHITE);
+			drawCylinderWithTexture(1.5, 0.5, 0.5, "Image/YellowTexture.bmp");
+			// drawCylinder(1.5, 0.5, 0.5);
+			setDiffuseColor(COLOR_BLUE);
 		}
 		glRotated(-90, 0.0, 1.0, 0.0);
 		glTranslated(0, 0, -0.25);
@@ -268,7 +271,10 @@ void SampleModel::draw()
 		glRotated(90, 0.0, 1.0, 0.0);
 		if (VAL(LEVEL_OF_DETAILS) > 1)
 		{
-			drawCylinder(1.5, 0.5, 0.5);
+			setDiffuseColor(COLOR_WHITE);
+			drawCylinderWithTexture(1.5, 0.5, 0.5, "Image/YellowTexture.bmp");
+			// drawCylinder(1.5, 0.5, 0.5);
+			setDiffuseColor(COLOR_BLUE);
 		}
 		glRotated(-90, 0.0, 1.0, 0.0);
 		glTranslated(0, 0, -0.25);
@@ -479,6 +485,23 @@ int main()
 	controls[LEVEL_OF_DETAILS] = ModelerControl("Level Of Details", 0, 3, 1, 3);
 	controls[INDIVIDUAL_LOOK] = ModelerControl("Individual look", 0, 1, 1, 0);
 	controls[L_SYSTEM] = ModelerControl("L-system", 0, 1, 1, 0);
+
+	controls[INVERSE_KINEMATICS] = ModelerControl("Inverse Kinematics?", 0, 1, 1, 0);
+	controls[HEAD_CSTRN_X] = ModelerControl("Head Constraint X", -10, 10, 0.1, 0);
+	controls[HEAD_CSTRN_Y] = ModelerControl("Head Constraint Y", -10, 10, 0.1, 0);
+	controls[HEAD_CSTRN_Z] = ModelerControl("Head Constraint Z", -10, 10, 0.1, 0);
+	controls[LHAND_CSTRN_X] = ModelerControl("Left Hand Constraint X", -10, 10, 0.1, 0);
+	controls[LHAND_CSTRN_Y] = ModelerControl("Left Hand Constraint Y", -10, 10, 0.1, 0);
+	controls[LHAND_CSTRN_Z] = ModelerControl("Left Hand Constraint Z", -10, 10, 0.1, 0);
+	controls[RHAND_CSTRN_X] = ModelerControl("Right Hand Constraint X", -10, 10, 0.1, 0);
+	controls[RHAND_CSTRN_Y] = ModelerControl("Right Hand Constraint Y", -10, 10, 0.1, 0);
+	controls[RHAND_CSTRN_Z] = ModelerControl("Right Hand Constraint Z", -10, 10, 0.1, 0);
+	controls[LFOOT_CSTRN_X] = ModelerControl("Left Foot Constraint X", -10, 10, 0.1, 0);
+	controls[LFOOT_CSTRN_Y] = ModelerControl("Left Foot Constraint Y", -10, 10, 0.1, 0);
+	controls[LFOOT_CSTRN_Z] = ModelerControl("Left Foot Constraint Z", -10, 10, 0.1, 0);
+	controls[RFOOT_CSTRN_X] = ModelerControl("Right Foot Constraint X", -10, 10, 0.1, 0);
+	controls[RFOOT_CSTRN_Y] = ModelerControl("Right Foot Constraint Y", -10, 10, 0.1, 0);
+	controls[RFOOT_CSTRN_Z] = ModelerControl("Right Foot Constraint Z", -10, 10, 0.1, 0);
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
 }

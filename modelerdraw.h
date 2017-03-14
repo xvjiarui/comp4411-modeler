@@ -93,6 +93,7 @@ void drawTextureBox( double x, double y, double z );
 
 // Draw a cylinder from z=0 to z=h with radius r1 at origin and r2 at z=h
 void drawCylinder( double h, double r1, double r2 );
+void drawCylinderWithTexture(double h, double r1, double r2, const char* dir);
 
 // Driangle with three given vertices.  Specify in counterclockwise direction
 void drawTriangle( double x1, double y1, double z1,

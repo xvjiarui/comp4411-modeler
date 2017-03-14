@@ -9,8 +9,23 @@
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(67): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(199): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(258): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(435): warning C4305: 'argument': truncation from 'double' to 'float'
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(439): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(262): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(442): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(446): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(490): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(491): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(492): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(493): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(494): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(495): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(496): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(497): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(498): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(499): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(500): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(501): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(502): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(503): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(504): warning C4305: 'argument': truncation from 'double' to 'float'
   modeler.vcxproj -> \\Mac\Home\Documents\C++\COMP4411\Project\Project2\ModSkelS17\.\Debug\modeler.exe
   modeler.vcxproj -> .\Debug/modeler.pdb (Full PDB)

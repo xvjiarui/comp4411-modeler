@@ -380,6 +380,92 @@ void drawCylinder( double h, double r1, double r2 )
     }
 
 }
+
+void drawCylinderWithTexture(double h, double r1, double r2, const char* dir)
+{
+    ModelerDrawState *mds = ModelerDrawState::Instance();
+    int divisions;
+
+    _setupOpenGl();
+
+    switch (mds->m_quality)
+    {
+    case HIGH:
+        divisions = 32; break;
+    case MEDIUM:
+        divisions = 20; break;
+    case LOW:
+        divisions = 12; break;
+    case POOR:
+        divisions = 8; break;
+    }
+
+    if (mds->m_rayFile)
+    {
+        _dump_current_modelview();
+        fprintf(mds->m_rayFile,
+            "cone { height=%f; bottom_radius=%f; top_radius=%f;\n", h, r1, r2);
+        _dump_current_material();
+        fprintf(mds->m_rayFile, "})\n");
+    }
+    else
+    {
+        GLUquadricObj* gluq;
+
+        // GLU will again do the work.  draw the sides of the cylinder. 
+        glEnable(GL_TEXTURE_2D);
+        Texture tex;
+        tex.loadBMP_custom(dir);
+        gluq = gluNewQuadric();
+        gluQuadricDrawStyle(gluq, GLU_FILL);
+        gluQuadricTexture(gluq, GL_TRUE);
+        gluCylinder(gluq, r1, r2, h, divisions, divisions);
+        gluDeleteQuadric(gluq);
+        glDisable(GL_TEXTURE_2D);
+
+        if (r1 > 0.0)
+        {
+            // if the r1 end does not come to a point, draw a flat disk to
+            //cover it up. 
+
+            gluq = gluNewQuadric();
+            gluQuadricDrawStyle(gluq, GLU_FILL);
+            gluQuadricTexture(gluq, GL_TRUE);
+            gluQuadricOrientation(gluq, GLU_INSIDE);
+            gluDisk(gluq, 0.0, r1, divisions, divisions);
+            gluDeleteQuadric(gluq);
+        }
+
+        if (r2 > 0.0)
+        {
+            // if the r2 end does not come to a point, draw a flat disk to
+            //cover it up. 
+
+            // save the current matrix mode. 
+            int savemode;
+            glGetIntegerv(GL_MATRIX_MODE, &savemode);
+
+            // translate the origin to the other end of the cylinder. 
+            glMatrixMode(GL_MODELVIEW);
+            glPushMatrix();
+            glTranslated(0.0, 0.0, h);
+
+            // draw a disk centered at the new origin. 
+            gluq = gluNewQuadric();
+            gluQuadricDrawStyle(gluq, GLU_FILL);
+            gluQuadricTexture(gluq, GL_TRUE);
+            gluQuadricOrientation(gluq, GLU_OUTSIDE);
+            gluDisk(gluq, 0.0, r2, divisions, divisions);
+            gluDeleteQuadric(gluq);
+
+            // restore the matrix stack and mode. 
+            glPopMatrix();
+            glMatrixMode(savemode);
+        }
+    }
+
+}
+
 void drawTriangle( double x1, double y1, double z1,
                    double x2, double y2, double z2,
                    double x3, double y3, double z3 )

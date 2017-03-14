@@ -188,6 +188,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="tex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitmap.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="modelerui.h" />
     <ClInclude Include="modelerview.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="tex.h" />
     <ClInclude Include="vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
