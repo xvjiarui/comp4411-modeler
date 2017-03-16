@@ -56,17 +56,22 @@ public:
     	rotate_axis[0].normalize();
     	effector = rotate_vec(effector, rotate_angle[0], rotate_axis[0][0], rotate_axis[0][1], rotate_axis[0][2]);
     	joints[1] = rotate_vec(joints[1], rotate_angle[0], rotate_axis[0][0], rotate_axis[0][1], rotate_axis[0][2]);
-    	// printf("pre %f %f %f\n", joints[1][0], joints[1][1], joints[1][2]);
-    	// double cof = -effector[2]/effector[1];
-    	// if (abs(effector[1]) < 0.00000001)
-    	// {
-    	// 	return;
-    	// }
-    	// joints[1] = reflect_vec(joints[1], 0, cof, 1);
-    	// printf("post %f %f %f\n", joints[1][0], joints[1][1], joints[1][2]);
-    	Vec3d test_vec = Vec3d(0, 1, 0);
-    	test_vec = reflect_vec(test_vec, 0, 1, 0);
-    	printf("%f %f %f\n", test_vec[0], test_vec[1], test_vec[2]);
+    	if (VAL(ANGLE_LIMIT))
+    	{
+    		if (last_y < VAL(CSTRN_Y))
+    		{
+		    	double cof = -effector[2]/effector[1];
+		    	Vec3d n_plane = Vec3d(0, cof, 1);
+		    	n_plane.normalize();
+		    	if (abs(effector[1]) < 0.00000001)
+		    	{
+		    		return;
+		    	}
+		    	joints[1] = reflect_vec(joints[1], n_plane[0], n_plane[1], n_plane[2]);
+		    	last_y = VAL(CSTRN_Y);
+    		}
+    		else last_y = VAL(CSTRN_Y);
+    	}
 
     }
     Vec3d cross_product(Vec3d v1, Vec3d v2)
@@ -118,6 +123,7 @@ public:
 	Vec3d effector = Vec3d(0.0f, 0.0f, joint_raduis * 4.0f + joint_length * 2.0f);
 	Vec3d rotate_axis[2] = {Vec3d(0, 0, 0), Vec3d(0, 0, 0)};
 	double rotate_angle[2] = {0, 0};
+	int last_y = 0;
 
 };
 
@@ -411,15 +417,19 @@ void SampleModel::draw()
 		}
 		glRotated(-90, 0.0, 1.0, 0.0);
 
-		// if (ModelerApplication::Instance()->m_animating == true)
-		// {
-		// 	MetaBall* m_metaBall = new MetaBall(1.0f);
-		// 	m_metaBall->addBallRel(3, metaball_pos, 3, 4);
-		// 	m_metaBall->addBallRel(3, 3 - metaball_pos, 3, 4);
-		// 	m_metaBall->draw(30);
-		// 	delete m_metaBall;
-		// 	metaball_pos += metaball_step;
-		// }
+		if (ModelerApplication::Instance()->m_animating == true)
+		{
+			MetaBall* m_metaBall = new MetaBall(1.0f);
+			m_metaBall->addBallRel(3, metaball_pos, 3, 4);
+			m_metaBall->addBallRel(3, 3 - metaball_pos, 3, 4);
+			m_metaBall->draw(30);
+			delete m_metaBall;
+			metaball_pos += metaball_step;
+			if (metaball_pos > 3)
+			{
+				metaball_pos = 0;
+			}
+		}
 
 		glTranslated(1, 0, 0);
 		glRotated(-VAL(ROTATE_RIGHT_LEG_L_X) + 2 * VAL(LIFT_RIGHT_LEG) - 2 * leg_angle, 1.0, 0.0, 0.0);
@@ -528,7 +538,6 @@ void SampleModel::draw()
 
 	if (VAL(INVERSE_KINEMATICS))
 	{
-		IK_calculation();
 		IK_calculation();
 		glPushMatrix();
 			
