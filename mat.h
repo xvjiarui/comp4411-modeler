@@ -81,6 +81,8 @@ public:
 	template <class U> friend Mat3<U> operator *( const Mat3<U>& a, const Mat3<U>& b );
 	template <class U> friend Mat3<U> operator *( const Mat3<U>& a, const double d );
 	template <class U> friend Mat3<U> operator *( const double d, const Mat3<U>& a );
+	template <class U> friend Vec3<U> operator *(const Mat3<U>& a, const Vec3<U>& v);
+	template <class U> friend Vec3<U> operator *(const Vec3<U>& v, const Mat3<U>& a);
 	template <class U> friend Mat3<U> operator /( const Mat3<U>& a, const double d );
 	template <class U> friend bool operator ==( const Mat3<U>& a, const Mat3<U>& b );
 	template <class U> friend bool operator !=( const Mat3<U>& a, const Mat3<U>& b );
@@ -93,6 +95,8 @@ public:
 	friend Mat3<T> operator *( const Mat3<T>& a, const Mat3<T>& b );
 	friend Mat3<T> operator *( const Mat3<T>& a, const double d );
 	friend Mat3<T> operator *( const double d, const Mat3<T>& a );
+	friend Vec3<U> operator *(const Mat3<U>& a, const Vec3<U>& v);
+	friend Vec3<U> operator *(const Vec3<U>& v, const Mat3<U>& a);
 	friend Mat3<T> operator /( const Mat3<T>& a, const double d );
 	friend bool operator ==( const Mat3<T>& a, const Mat3<T>& b );
 	friend bool operator !=( const Mat3<T>& a, const Mat3<T>& b );
@@ -252,6 +256,8 @@ public:
 	template <class U> friend Mat4<U> operator *( const Mat4<U>& a, const double d );
 	template <class U> friend Mat4<U> operator *( const double d, const Mat4<U>& a );
 	template <class U> friend Vec3<U> operator *( const Mat4<U>& a, const Vec3<U>& b );
+	template <class U> friend Vec4<U> operator *(const Mat4<U>& a, const Vec4<U>& v);
+	template <class U> friend Vec4<U> operator *(const Vec4<U>& v, const Mat4<U>& a);
 	template <class U> friend Mat4<U> operator /( const Mat4<U>& a, const double d );
 	template <class U> friend bool operator ==( const Mat4<U>& a, const Mat4<U>& b );
 	template <class U> friend bool operator !=( const Mat4<U>& a, const Mat4<U>& b );

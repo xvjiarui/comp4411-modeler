@@ -6,6 +6,7 @@
 #endif
 
 #include "tex.h"
+#include "vec.h"
 
 // This is a list of the controls for the SampleModel
 // We'll use these constants to access the values 
@@ -31,27 +32,22 @@ enum SampleModelControls
 	LEVEL_OF_DETAILS,
 	INDIVIDUAL_LOOK,
 	L_SYSTEM,
-
+	L_SYSTEM_SIZE,
+	L_SYSTEM_NUM,
+	MOOD_CYCLE, 
+	//Switch to turn limiting of angles on and off
+	ANGLE_LIMIT,
 	//Inverse Kinematics Constraints
 	INVERSE_KINEMATICS,
-	HEAD_CSTRN_X,
-	HEAD_CSTRN_Y,
-	HEAD_CSTRN_Z,
-	LHAND_CSTRN_X,
-	LHAND_CSTRN_Y,
-	LHAND_CSTRN_Z,
-	RHAND_CSTRN_X,
-	RHAND_CSTRN_Y,
-	RHAND_CSTRN_Z,
-	LFOOT_CSTRN_X,
-	LFOOT_CSTRN_Y,
-	LFOOT_CSTRN_Z,
-	RFOOT_CSTRN_X,
-	RFOOT_CSTRN_Y,
-	RFOOT_CSTRN_Z,
+	CSTRN_X,
+	CSTRN_Y,
+	CSTRN_Z,
 
 	NUMCONTROLS
 };
+// IK
+
+
 // Animation
 
 
@@ -69,5 +65,12 @@ enum SampleModelControls
 // We'll be getting the instance of the application a lot; 
 // might as well have it as a macro.
 #define VAL(x) (ModelerApplication::Instance()->GetControlValue(x))
+// CUSTOM: sets the controls value
+#define SET(controlNum, value) (ModelerApplication::Instance()->SetControlValue(controlNum, value))
+#define STEPUP(controlNum) (ModelerApplication::Instance()->incrementControlValue(controlNum,1))
+#define STEPDOWN(controlNum) (ModelerApplication::Instance()->incrementControlValue(controlNum,-1))
+#define RANDOMIZE(controlNum, rangePercent, shiftPercent) (ModelerApplication::Instance()->randomizeControlValue(controlNum,VAL(controlNum), rangePercent, shiftPercent)) //the percentile interval should not exceed 50%
+#define RANGE(controlNum) (ModelerApplication::Instance()->getControlMaximum(controlNum) - ModelerApplication::Instance()->getControlMinimum(controlNum))
+
 
 #endif

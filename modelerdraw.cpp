@@ -746,6 +746,54 @@ void drawTexture(std::string& fileName, GLuint& handle)
     stbi_image_free(textureData);
 }
 
+void drawLSystem(int depth, int num){
+    if (depth == 1)
+    {
+        glPushMatrix();
+        glBegin(GL_LINES);
+          glVertex3f(0, 0, 0);
+          glVertex3f(0, 2, 0);
+        glEnd();
+        glTranslated(0, 2, 0);
+        drawSphere(0.1);
+        glTranslated(0, -2, 0);
+        glBegin(GL_LINES);
+          glVertex3f(0, 2, 0);
+          glVertex3f(2, 4, 0);
+        glEnd();
+        glTranslated(0, 2, 0);
+        drawSphere(0.1);
+        glTranslated(0, -2, 0);
+        glBegin(GL_LINES);
+          glVertex3f(0, 2, 0);
+          glVertex3f(-2, 4, 0);
+        glEnd();
+        glTranslated(0, 2, 0);
+        drawSphere(0.1);
+        glTranslated(0, -2, 0);
+        glPopMatrix();
+    }
+    else 
+    {
+        glPushMatrix();
+        glBegin(GL_LINES);
+          glVertex3f(0, 0, 0);
+          glVertex3f(0, 2, 0);
+        glEnd();
+        glTranslated(0, 2, 0);
+        drawSphere(0.1);
+        glRotated(-60/depth, 0.0, 0.0, 1.0);
+        drawLSystem(depth -1, num);
+        glPopMatrix();
+        glPushMatrix();
+        glTranslated(0, 2, 0);
+        drawSphere(0.1);
+        glRotated(60/depth, 0.0, 0.0, 1.0);
+        drawLSystem(depth - 1, num);
+        glPopMatrix();
+
+    }
+}
 
 
 

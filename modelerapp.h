@@ -51,6 +51,15 @@ public:
     double GetControlValue(int controlNumber);
     void   SetControlValue(int controlNumber, double value);
 
+    //CUSTOM: Get increment the slider
+	void   incrementControlValue(int controlNumber, int times);
+	//CUSTOM: Randomize the slider value, with given randomization Center and the percent
+	//range of the random intervals
+	void   randomizeControlValue(int controlNumber, double randomizeCenter, double rangePercentile, double shiftPercentile = 0.0);
+	//CUSTOM: Get the maximum and minimum of the values of slider
+	double getControlMaximum(int controlNumber);
+	double getControlMinimum(int controlNumber);
+
     bool m_animating;
 
 private:

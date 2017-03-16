@@ -1,10 +1,10 @@
 #ifndef INVERSE_KINEMATICS_H
 #define INVERSE_KINEMATICS_H
 
-#include<vector>
-#include"modelerglobals.h"
-#include"modelerapp.h"
-#include"model\model.h"
+#include <vector>
+#include "modelerglobals.h"
+#include "modelerapp.h"
+
 
 class IK
 {
@@ -57,8 +57,8 @@ private:
 	static void saveCurrState();
 	static void loadCurrState();
 
-	static const int vectorLength = NUMCONTROLS - LEVEL_OF_DETAIL - 1;
-	static const int startPos = LEVEL_OF_DETAIL + 1;
-	static const int endPos = NUMCONTROLS;
+	static const int vectorLength = LEVEL_OF_DETAILS - ROTATE_HEAD_X - 1;
+	static const int startPos = ROTATE_HEAD_X;
+	static const int endPos = LEVEL_OF_DETAILS;
 };
 #endif //INVERSE_KINEMATICS_H

@@ -4,12 +4,13 @@
  * and an sample metric function that operates upon the sample model
  */
 
-#include<exception>
-#include"InverseKinematics.h"
-#include<cstdlib>
-#include<ctime>
-#include<random>
-#include<cassert>
+#include <exception>
+#include "InverseKinematics.h"
+#include <cstdlib>
+#include <ctime>
+#include <random>
+#include <cassert>
+#include "vec.h"
 
 using namespace std;
 
@@ -138,37 +139,38 @@ double IK::targetCost() {
 	//up to date with sliders
 	//head cost
 	// Model::m_modelList[HEAD]->refreshParameters();
-	Vec3f headPos = Vec3f(0, 0, 0);
-	Vec3f headConstraint(VAL(HEAD_CSTRN_X), VAL(HEAD_CSTRN_Y), VAL(HEAD_CSTRN_Z));
-	double headCost = (headPos - headConstraint).length2();
+	// Vec3f headPos = Vec3f(0, 0, 0);
+	// Vec3f headConstraint(VAL(HEAD_CSTRN_X), VAL(HEAD_CSTRN_Y), VAL(HEAD_CSTRN_Z));
+	// double headCost = (headPos - headConstraint).length2();
 
 	//left hand cost
 	// Model::m_modelList[LEFTHAND]->refreshParameters();
-	Vec3f leftHandPos = Vec3f(0, 0, 0);
-	Vec3f leftHandConstraint(VAL(LHAND_CSTRN_X), VAL(LHAND_CSTRN_Y), VAL(LHAND_CSTRN_Z));
-	double leftHandCost = (leftHandPos - leftHandConstraint).length2();
+	// Vec3f leftHandPos = Vec3f(0, 0, 0);
+	// Vec3f leftHandConstraint(VAL(LHAND_CSTRN_X), VAL(LHAND_CSTRN_Y), VAL(LHAND_CSTRN_Z));
+	// double leftHandCost = (leftHandPos - leftHandConstraint).length2();
 
 	//right hand cost
 	// Model::m_modelList[RIGHTHAND]->refreshParameters();
-	Vec3f rightHandPos = Vec3f(0, 0, 0);
-	Vec3f rightHandConstraint(VAL(RHAND_CSTRN_X), VAL(RHAND_CSTRN_Y), VAL(RHAND_CSTRN_Z));
-	double rightHandCost = (rightHandPos - rightHandConstraint).length2();
+	// Vec3f rightHandPos = Vec3f(0, 0, 0);
+	// Vec3f rightHandConstraint(VAL(RHAND_CSTRN_X), VAL(RHAND_CSTRN_Y), VAL(RHAND_CSTRN_Z));
+	// double rightHandCost = (rightHandPos - rightHandConstraint).length2();
 
 	//left foot cost
 	// Model::m_modelList[LEFTFOOT]->refreshParameters();
-	Vec3f leftFootPos = Vec3f(0, 0, 0);
-	Vec3f leftFootConstraint(VAL(LFOOT_CSTRN_X), VAL(LFOOT_CSTRN_Y), VAL(LFOOT_CSTRN_Z));
-	double leftFootCost = (leftFootPos - leftFootConstraint).length2();
+	// Vec3f leftFootPos = Vec3f(0, 0, 0);
+	// Vec3f leftFootConstraint(VAL(LFOOT_CSTRN_X), VAL(LFOOT_CSTRN_Y), VAL(LFOOT_CSTRN_Z));
+	// double leftFootCost = (leftFootPos - leftFootConstraint).length2();
 
 	//right foot cost
 	// Model::m_modelList[RIGHTFOOT]->refreshParameters();
-	Vec3f rightFootPos = Vec3f(0, 0, 0);
-	Vec3f rightFootConstraint(VAL(RFOOT_CSTRN_X), VAL(RFOOT_CSTRN_Y), VAL(RFOOT_CSTRN_Z));
-	double rightFootCost = (rightFootPos - rightFootConstraint).length2();
+	// Vec3f rightFootPos = Vec3f(0, 0, 0);
+	// Vec3f rightFootConstraint(VAL(RFOOT_CSTRN_X), VAL(RFOOT_CSTRN_Y), VAL(RFOOT_CSTRN_Z));
+	// double rightFootCost = (rightFootPos - rightFootConstraint).length2();
 #ifdef _DEBUG
 	//printf("head %f lHand %f rhand %f lfoot %f rfoot %f\n", headCost, leftHandCost, rightHandCost, leftFootCost, rightFootCost);
 #endif
-	return headCost + leftHandCost + rightHandCost + leftFootCost + rightFootCost;
+	// return headCost + leftHandCost + rightHandCost + leftFootCost + rightFootCost;
+	return 0;
 }
 
 double IK::statusQuoCost() {

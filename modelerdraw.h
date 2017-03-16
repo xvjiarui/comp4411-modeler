@@ -117,4 +117,6 @@ void drawShoulder(double r, double h, int level);
 
 void drawTexture(std::string& fileName, GLuint& handle);
 
+void drawLSystem(int size, int num);
+
 #endif
