@@ -1,23 +1,25 @@
 ﻿  sample.cpp
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(71): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(73): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(75): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(167): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(167): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(168): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(168): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(169): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(169): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(170): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
 \\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(170): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(171): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(171): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(172): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(172): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(184): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(270): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(315): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(365): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(562): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(563): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(577): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(578): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(612): warning C4305: 'argument': truncation from 'double' to 'float'
-\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(616): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(182): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(268): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(313): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(363): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(423): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(424): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(564): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(565): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(579): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(580): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(614): warning C4305: 'argument': truncation from 'double' to 'float'
+\\mac\home\documents\c++\comp4411\project\project2\modskels17\sample.cpp(618): warning C4305: 'argument': truncation from 'double' to 'float'
   modeler.vcxproj -> \\Mac\Home\Documents\C++\COMP4411\Project\Project2\ModSkelS17\.\Debug\modeler.exe
   modeler.vcxproj -> .\Debug/modeler.pdb (Full PDB)
